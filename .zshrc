@@ -15,7 +15,7 @@ export ZSH="/Users/nithishkarthik/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="fino"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -38,6 +38,13 @@ export GOPATH="$HOME/Go"
 function gsc() {
   git add .
   git commit -s
+}
+
+function reinstall_lvim(){
+  rm -rf ~/.local/share/lunarvim ~/.local/share/lunarvim.bak
+  rm -rf ~/.local/bin/lvim
+  rm -rf ~/.config/lvim/plugin
+  bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
 }
 
 # Uncomment the following line to use hyphen-insensitive completion.
@@ -66,7 +73,7 @@ function gsc() {
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -107,6 +114,8 @@ source $ZSH/oh-my-zsh.sh
 #   export EDITOR='mvim'
 # fi
 
+export EDITOR="lvim"
+
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -136,4 +145,4 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
+export PATH="$VOLTA_HOME/bin:$PATH:$HOME/.local/bin"
